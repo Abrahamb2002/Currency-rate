@@ -49,7 +49,7 @@ async function fetchNomadRate() {
     browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const page = await browser.newPage();
     await page.goto('https://www.nomadglobal.com/', { waitUntil: 'domcontentloaded' });
-    await page.waitForTimeout(2000); // ensure content loads
+    await new Promise(res => setTimeout(res, 2000));
 
     const rateText = await page.evaluate(() => {
       const txt = document.body.innerText;
